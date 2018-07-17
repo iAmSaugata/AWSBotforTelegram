@@ -1,6 +1,6 @@
 #AWS Bot Automation
 #Author : Saugata Datta
-#GIT
+#Make sure you have CURL installed in Script ot Windows Directory - https://curl.haxx.se/dlwiz/?type=bin
 #Email  : Saugata.Datta@technochat.in
 #Config Task
 if(!$(Get-ScheduledTask | ? {$_.TaskName -eq "AWS-Auto-Bot"})){
@@ -120,7 +120,12 @@ function Send-TeleMessage([string] $BotKey , [array] $ChatIDs , [string] $Messag
 }
 
 while ($true) {
+    #Start Admin
+    #This is for additional security to alow user for start/stop instances
+    #Bydefault no one allowed.
+    #To alow your self, you have to do it manually, and then you can add others from Telegram.
     $AdminUsers=Get-Content $PSScriptRoot\adminusers.txt
+    #End Admin
     #$GetChatMSG = Invoke-WebRequest -Uri "https://api.telegram.org/bot$BotKey/getUpdates" -Proxy http://my.proxy.com:8080 -ProxyUseDefaultCredentials
     $GetChatMSG = Invoke-WebRequest -Uri "https://api.telegram.org/bot$BotKey/getUpdates"
     $GetChatRoom = (ConvertFrom-Json $GetChatMSG.Content).result.message | ? {$_.chat.id -eq "$ChatID"}
