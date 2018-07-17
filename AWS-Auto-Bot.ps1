@@ -1,6 +1,6 @@
 #AWS Bot Automation
 #Author : Saugata Datta
-#Make sure you have CURL installed in Script ot Windows Directory - https://curl.haxx.se/dlwiz/?type=bin
+#Make sure you have CURL installed in Script or Windows Directory - https://curl.haxx.se/dlwiz/?type=bin
 #Email  : Saugata.Datta@technochat.in
 #Config Task
 if(!$(Get-ScheduledTask | ? {$_.TaskName -eq "AWS-Auto-Bot"})){
